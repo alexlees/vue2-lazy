@@ -26,6 +26,10 @@ export default {
     err: {
       type: String,
       default: ERRIMAGE
+    },
+    loadTime: {
+      type: Number,
+      default: 1000
     }
   },
   data () {
@@ -49,7 +53,7 @@ export default {
         if ((this.offsetTop - window.scrollY) <= height) {
           setTimeout(() => {
             this.getImage(this.src)
-          }, 100)
+          }, this.loadTime)
           this.cancelScrollListener(this.src)
         }
       }
