@@ -28,7 +28,7 @@ new Vue({
 <template>
 <!--
 * @props trueUrl:         String required: true  lazyLoad组件 真实url
-* @props loadTime:        Number required: false lazyLoad组件 延迟加载image时长
+* @props loadTime:        Number required: false lazyLoad组件 延迟加载image时长 默认1000ms
 *
 * TODO  多种 load样式选择
 * TODO  添加demo 动图
