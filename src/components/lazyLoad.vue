@@ -1,11 +1,10 @@
 <template>
   <div :class="$style.lazy" ref="lazy">
     <img :src="data" alt="">
-    <transition name="slide-fade">
-      <div :class="$style.warp" v-if="!data" >
-        <div class="huan-loader"></div>
-      </div>
-    </transition>
+    <div :class="$style.warp" v-if="!data" >
+      <i :class="[$style.iconfont, $style['icon-loading'], $style.anim]" v-show="!icon"></i>
+      <slot name="icon"/>
+    </div>
   </div>
 </template>
 
@@ -36,7 +35,8 @@ export default {
     return {
       data: '',
       offsetWidth: 0,
-      offsetTop: 0
+      offsetTop: 0,
+      icon: false
     }
   },
   methods: {
@@ -88,11 +88,15 @@ export default {
     },
     cancelScrollListener () {
       window.removeEventListener('scroll', this.getElementView, false)
+    },
+    getIconSlot () {
+      return this.$slots && this.$slots.icon
     }
   },
   created () {
     this.$nextTick(() => {
       this.setElementHeight()
+      this.icon = this.getIconSlot()
     })
     this.requestResizeListener()
     this.requestScrollListener()
@@ -105,6 +109,7 @@ export default {
 </script>
 
 <style module>
+@import url(./font/iconfont.css);
 .lazy{
   width: 100%;
   position: relative;
@@ -124,7 +129,7 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  background: #ffffff;
+  background: rgb(242, 242, 242);
   z-index: 1;
 
   display: flex;
@@ -132,34 +137,21 @@ export default {
   align-items: center;
   justify-content: center;
 }
-</style>
-<style>
-.slide-fade-enter-active {
-  transition: all .3s ease;
-}
-.slide-fade-leave-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(100vw);
-  opacity: 0;
-}
-.huan-loader {
-  width: 50px;
-  height: 50px;
+.anim::before{
+  display: block;
+  color: #2f373d;
   box-sizing: border-box;
-  border: 5px solid transparent;
-  border-top-color: #2AAB69;
-  border-bottom-color: #2AAB69;
-  border-radius: 50%;
-  animation: huan-rotate 1s linear infinite;
+  font-size: 24px;
+  animation: loading 2s linear infinite;
+  will-change: transform;
 }
 
-@keyframes huan-rotate {
-  0% {
-    transform: rotate(0); }
-  100% {
-    transform: rotate(360deg); } }
-
+@keyframes loading {
+  0%{
+    transform: rotate(0);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
 </style>

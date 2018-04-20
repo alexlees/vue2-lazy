@@ -51,11 +51,13 @@
     <p>test</p>
     </div>
 
-    <lazyLoad src="https://img.mukewang.com/5ad015060001608909360316.jpg" :aspectRatio="2.9"/>
+    <lazyLoad src="https://img.mukewang.com/5ad015060001608909360316.jpg">
+      <span slot="icon">hello</span>
+    </lazyLoad>
     <p>test</p>
-    <lazyLoad src="https://img.mukewang.com/5ad015060001608909360316.jpg" :aspectRatio="2.9"/>
+    <lazyLoad src="https://img.mukewang.com/5ad015060001608909360316.jpg"/>
     <p>err</p>
-    <lazyLoad src="https://img.mukewang.com/5ad0150600008909360316.jpg" :aspectRatio="2.9"/>
+    <lazyLoad src="https://img.mukewang.com/5ad0150600008909360316.jpg"/>
   </div>
 </template>
 
