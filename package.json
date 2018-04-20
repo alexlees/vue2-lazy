@@ -1,10 +1,11 @@
 {
   "name": "vue2-lazy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A vue lazy load image component",
   "author": "alexlees",
   "main": "dist/index.js",
   "module": "src/components/index.js",
+  "style": "dist/style.css",
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
@@ -14,8 +15,7 @@
     "lint": "eslint --ext .js,.vue src test/unit test/e2e/specs",
     "build": "node build/build.js",
     "build:demo": "node build/build-demo.js",
-    "prepublish": "npm run build && npm run build:demo",
-    "publish": "npm publish"
+    "prepublish": "npm run build && npm run build:demo"
   },
   "files": [
     "src/components",
@@ -32,11 +32,10 @@
     "components"
   ],
   "dependencies": {
-
+    "vue": "^2.5.2"
   },
   "license": "MIT",
   "devDependencies": {
-    "vue": "^2.5.2",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
